@@ -1,5 +1,5 @@
-var url = require("url");
-var qs = require("querystring");
+let url = require("url");
+let qs = require("querystring");
 
 console.time("Hello");
 
@@ -17,12 +17,20 @@ console.log (process.memoryUsage());
 
 // URL 파싱 작업
 
-var po = url.parse("http://www.hanbit.co.kr/store/books/look.php?p_code=B4250257160");
+let po = url.parse("http://www.hanbit.co.kr/store/books/look.php?p_code=B4250257160");
 
 console.dir (po);
 
 // 쿼리스프링 처리
-var q = qs.parse (po.query);
+let q = qs.parse (po.query);
 
 console.dir (q);
 
+process.on ("exit", function (code) {
+    console.log (code + " - 기존 EXIT 종료합니다.");
+});
+
+// exit 이벤트 연결
+process.on ("exit", (code) => {
+    console.log (code + " - EXIT 종료합니다.");
+});
