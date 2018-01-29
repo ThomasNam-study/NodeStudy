@@ -24,7 +24,7 @@ let data2 = "Hello World .. !zzzzz";
 
 // fs.writeFileSync ("text.txt", data2, 'utf8');
 
-fs.writeFile ("text.txt", data2, 'utf8', (error, data3) => {
+fs.writeFile ("text.txt", data2, 'utf8', (error) => {
 
     if (error)
     {
@@ -32,5 +32,5 @@ fs.writeFile ("text.txt", data2, 'utf8', (error, data3) => {
         return;
     }
 
-    console.log (data3);
+    console.log ("쓰기 완료");
 });
