@@ -1,3 +1,5 @@
+var url = require("url");
+var qs = require("querystring");
 
 console.time("Hello");
 
@@ -7,8 +9,20 @@ console.log("output : %d", 273);
 
 console.timeEnd("Hello");
 
+// 프로세스 정보
 console.log (process.arch);
 console.log (process.version);
 console.log (process.platform);
 console.log (process.memoryUsage());
+
+// URL 파싱 작업
+
+var po = url.parse("http://www.hanbit.co.kr/store/books/look.php?p_code=B4250257160");
+
+console.dir (po);
+
+// 쿼리스프링 처리
+var q = qs.parse (po.query);
+
+console.dir (q);
 
