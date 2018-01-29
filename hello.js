@@ -16,7 +16,6 @@ console.log (process.platform);
 console.log (process.memoryUsage());
 
 // URL 파싱 작업
-
 let po = url.parse("http://www.hanbit.co.kr/store/books/look.php?p_code=B4250257160");
 
 console.dir (po);
@@ -26,11 +25,3 @@ let q = qs.parse (po.query);
 
 console.dir (q);
 
-process.on ("exit", function (code) {
-    console.log (code + " - 기존 EXIT 종료합니다.");
-});
-
-// exit 이벤트 연결
-process.on ("exit", (code) => {
-    console.log (code + " - EXIT 종료합니다.");
-});
