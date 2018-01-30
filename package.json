@@ -10,6 +10,7 @@
     "babel-cli": "^6.0.0",
     "babel-preset-es2015": "*",
     "ejs": "^2.5.7",
+    "express": "^4.16.2",
     "pug": "^2.0.0-rc.4"
   },
   "author": "",
