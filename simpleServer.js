@@ -1,6 +1,7 @@
 const fs = require("fs");
 const url = require("url");
 const ejs = require("ejs");
+const pug = require("pug");
 
 // 서버를 생성합니다.
 const server = require ("http").createServer ((request, response) => {
@@ -45,6 +46,18 @@ const server = require ("http").createServer ((request, response) => {
         fs.readFile("test.ejs",'utf-8', (error, data) => {
             response.writeHead(200, {'Content-Type':'text/html'});
             response.end(ejs.render(data, {
+                "myName":"Thomas Nam"
+            }));
+        });
+    }
+    else if (pathname === "/pug")
+    {
+        fs.readFile("test.pug",'utf-8', (error, data) => {
+            response.writeHead(200, {'Content-Type':'text/html'});
+
+            let fn = pug.compile(data);
+
+            response.end(fn({
                 "myName":"Thomas Nam"
             }));
         });
