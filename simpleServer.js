@@ -1,7 +1,44 @@
+const fs = require("fs");
+const url = require("url");
+
 // 서버를 생성합니다.
 const server = require ("http").createServer ((request, response) => {
-    response.writeHead(200, {'Content-Type':'text/html'});
-    response.end("<h1>Hello Web server with Node.js</h1>");
+
+    let reqUrl = url.parse(request.url);
+
+    let pathname = reqUrl.pathname;
+
+    if (pathname === "/")
+    {
+        fs.readFile("HTMLPage.html", (error, data) => {
+            response.writeHead(200, {'Content-Type':'text/html'});
+            response.end(data);
+        });
+    }
+    else if (pathname === "/q")
+    {
+        var query = reqUrl.query;
+
+        response.writeHead(200, {'Content-Type':'text/html'});
+        response.end("<H1>" + JSON.stringify(query) + "</H1>");
+    }
+    else if (pathname === "/test.png")
+    {
+        fs.readFile("node-js-736399_640.png", (error, data) => {
+            response.writeHead(200, {'Content-Type':'image/png'});
+            response.end(data);
+        });
+    }
+    else if (pathname === "/loc")
+    {
+        response.writeHead(302, {'Location':'http://naver.com'});
+        response.end();
+    }
+    else if (pathname === "/test")
+    {
+        response.writeHead(200, {'Content-Type':'text/html'});
+        response.end("<h1>Hello Web server with Node.js</h1>");
+    }
 });
 
 server.on('request', (code) => {
