@@ -1,5 +1,6 @@
 const fs = require("fs");
 const url = require("url");
+const ejs = require("ejs");
 
 // 서버를 생성합니다.
 const server = require ("http").createServer ((request, response) => {
@@ -38,6 +39,15 @@ const server = require ("http").createServer ((request, response) => {
     {
         response.writeHead(200, {'Content-Type':'text/html'});
         response.end("<h1>Hello Web server with Node.js</h1>");
+    }
+    else if (pathname === "/ejs")
+    {
+        fs.readFile("test.ejs",'utf-8', (error, data) => {
+            response.writeHead(200, {'Content-Type':'text/html'});
+            response.end(ejs.render(data, {
+                "myName":"Thomas Nam"
+            }));
+        });
     }
 });
 
